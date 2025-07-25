@@ -1,19 +1,16 @@
-import type { News } from '../types/news'
-import type { Post } from '../types/posts'
-
 export const ROUTES = {
   MAIN: '/',
   NEWS_MAGAZINE: {
     BASE: '/magazine',
     GUEST: '/magazine',
     NEWS: '/magazine/news/',
-    NEWS_DEATILS: (id: News[`id`]) => `/magazine/${id}`,
+    NEWS_DEATILS: '/magazine/:id',
   },
   SOCIAL_NETWORK: {
     BASE: '/posts',
     POSTS: '/posts',
     NEW_POST: '/posts/new',
-    POST_DETAILS: (id: Post[`id`]) => `/posts/${id}`,
+    POST_DETAILS: '/posts/:id',
   },
   RACE_TAXI: {
     BASE: '/race',
