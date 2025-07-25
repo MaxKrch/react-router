@@ -9,8 +9,9 @@ const RaceMenu = () => {
       <nav className="race-menu">
         <NavLink
           to={ROUTES.RACE_TAXI.HOME}
+          end
           className={({ isActive }) => (isActive ? activeClasses : passiveClasses)}
-        >
+           >
           Главная
         </NavLink>
         <NavLink
