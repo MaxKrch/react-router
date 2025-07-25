@@ -1,9 +1,5 @@
 const ProfileBlock = () => {
-    return(
-        <div>
-            ProfileBlock
-        </div>
-    )
+  return <div>ProfileBlock</div>
 }
 
 export default ProfileBlock

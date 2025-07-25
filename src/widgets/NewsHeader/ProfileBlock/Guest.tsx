@@ -1,9 +1,5 @@
 const Guest = () => {
-    return(
-        <div>
-            Guest
-        </div>
-    )
+  return <div>Guest</div>
 }
 
-export default Guest;
+export default Guest

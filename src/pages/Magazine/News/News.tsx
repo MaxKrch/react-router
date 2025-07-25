@@ -1,9 +1,5 @@
 const News = () => {
-    return(
-        <div>
-            Magazine Single News   
-        </div>
-    )
+  return <div>Magazine Single News</div>
 }
 
-export default News;
+export default News

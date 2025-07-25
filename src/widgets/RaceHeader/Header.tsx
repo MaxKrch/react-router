@@ -1,9 +1,5 @@
 const RaceHeader = () => {
-    return(
-        <div>
-            Header Race
-        </div>
-    )
+  return <div>Header Race</div>
 }
 
 export default RaceHeader

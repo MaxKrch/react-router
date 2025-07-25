@@ -4,7 +4,10 @@ type ErrorMessageProps = {
   error?: string
   onClick?: () => void
 }
-const ErrorMessage = ({ error = `Что-то пошло не так...`, onClick }: ErrorMessageProps) => {
+const ErrorMessage = ({
+  error = `Что-то пошло не так...`,
+  onClick,
+}: ErrorMessageProps) => {
   return (
     <div className="flex justify-center items-center flex-col gap-3 h-full w-full">
       <div className="font-semibold text-xl">{error}</div>

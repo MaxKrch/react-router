@@ -1,1 +1,1 @@
-export { default } from './ProfileBlock' 
+export { default } from './ProfileBlock'

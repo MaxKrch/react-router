@@ -1,9 +1,5 @@
 const NewsFeed = () => {
-    return(
-        <div>
-            NewsFeed
-        </div>
-    )
+  return <div>NewsFeed</div>
 }
 
 export default NewsFeed
