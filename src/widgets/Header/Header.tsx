@@ -1,30 +1,9 @@
-import { ROUTES } from '@/shared/const/routes'
-import { NavLink, Outlet } from 'react-router-dom'
+import AppMenu from '@/shared/ui/AppMenu'
 
 const Header = () => {
   return (
-    <div className="">
-      <nav className="">
-        <NavLink
-          to={ROUTES.RACE_TAXI.HOME}
-          className={(isActive) => (isActive ? '' : '')}
-        >
-          Race Taxi
-        </NavLink>
-        <NavLink
-          to={ROUTES.NEWS_MAGAZINE.GUEST}
-          className={(isActive) => (isActive ? '' : '')}
-        >
-          News Magazine
-        </NavLink>
-        <NavLink
-          to={ROUTES.SOCIAL_NETWORK.POSTS}
-          className={(isActive) => (isActive ? '' : '')}
-        >
-          Social Nwtwork
-        </NavLink>
-      </nav>
-      <Outlet />
+    <div className="w-full h-8 bg-blue-100">
+      <AppMenu />
     </div>
   )
 }

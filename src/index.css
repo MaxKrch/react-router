@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -24,7 +22,6 @@ html {
 
 body {
   font-family: sans-serif;
-  background: #260F26;
 }
 
 .container {
@@ -35,10 +32,16 @@ body {
 }
 
 .race-container {
+  background: #260F26;
+  padding: 2rem;
+}
+
+.race-body {
+  width: 100%;
+  margin: auto;
+  margin-top: 1.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
   background: #361F36;
-  margin: 3rem auto;
-  width: 100%;
 }
 
 .race-article {
@@ -49,6 +52,8 @@ body {
   margin-bottom: 1em;
   color: #fff;
   opacity: 0.8;  
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .race-article__paragraph {
@@ -58,13 +63,16 @@ body {
   opacity: .6;
 }
 
-.race-menu {
-  display: flex;
-  width: 90%;
-  max-width: 1000px;
-  margin: 3rem auto;
+.race-header {
+  width: 100%;
   box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
   background: #361F36;
+  margin: auto;
+}
+
+.race-menu {
+  display: flex;
+
 }
 
 .race-menu__item {

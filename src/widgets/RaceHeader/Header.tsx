@@ -1,5 +1,11 @@
+import RaceMenu from "@/shared/ui/RaceMenu"
+
 const RaceHeader = () => {
-  return <div>Header Race</div>
+  return (
+    <div className="race-header">
+      <RaceMenu />
+    </div>
+  )
 }
 
 export default RaceHeader

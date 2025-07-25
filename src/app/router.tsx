@@ -12,25 +12,25 @@ import ForzaCarting from '@/pages/RaceTaxi/ForzaCarting'
 import HomePage from '@/pages/RaceTaxi/Home'
 import TimeAttack from '@/pages/RaceTaxi/TimeAttack'
 import { ROUTES } from '@/shared/const/routes'
-import Header from '@/widgets/Header'
-import NewsHeader from '@/widgets/NewsHeader'
-import RaceHeader from '@/widgets/RaceHeader'
+import NetworkHeader from '@/widgets/NetworkHeader'
+import RaceLayout from '@/layouts/RaceLayout'
 import {
-  createBrowserRouter,
-  RouterProvider,
+  // createBrowserRouter,
+  // RouterProvider,
   BrowserRouter,
   Route,
   Routes,
 } from 'react-router-dom'
+import AppLayout from '@/layouts/AppLayout'
 
 export function AppRouter() {
   return (
     <BrowserRouter basename="/react-router">
       <Routes>
-        <Route path="/" element={<Header />}>
+        <Route path="/" element={<AppLayout />}>
           <Route index element={<MainPage />} />
           
-          <Route path={ROUTES.RACE_TAXI.BASE} element={<RaceHeader />}>
+          <Route path={ROUTES.RACE_TAXI.BASE} element={<RaceLayout />}>
             <Route index element={<HomePage />} />
             <Route path={ROUTES.RACE_TAXI.FORZA} element={<ForzaCarting />} />
             <Route path={ROUTES.RACE_TAXI.DRIFT} element={<Drift />} />
@@ -40,7 +40,7 @@ export function AppRouter() {
             />
           </Route>
           
-          <Route path={ROUTES.NEWS_MAGAZINE.BASE} element={<NewsHeader/>}>
+          <Route path={ROUTES.NEWS_MAGAZINE.BASE} element={<NetworkHeader/>}>
             <Route index element={<Guest />} />
             <Route path={ROUTES.NEWS_MAGAZINE.NEWS} element={<NewsFeed />} />
             <Route path={ROUTES.NEWS_MAGAZINE.NEWS_DEATILS} element={<News />} />
@@ -61,3 +61,4 @@ export function AppRouter() {
 }
 
 export default AppRouter
+

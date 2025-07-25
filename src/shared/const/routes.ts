@@ -7,10 +7,10 @@ export const ROUTES = {
     NEWS_DEATILS: '/magazine/:id',
   },
   SOCIAL_NETWORK: {
-    BASE: '/posts',
-    POSTS: '/posts',
-    NEW_POST: '/posts/new',
-    POST_DETAILS: '/posts/:id',
+    BASE: '/social',
+    POSTS: '/social/posts',
+    NEW_POST: '/social/posts/new',
+    POST_DETAILS: '/social/posts/:id',
   },
   RACE_TAXI: {
     BASE: '/race',
