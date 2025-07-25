@@ -12,7 +12,6 @@ import ForzaCarting from '@/pages/RaceTaxi/ForzaCarting'
 import HomePage from '@/pages/RaceTaxi/Home'
 import TimeAttack from '@/pages/RaceTaxi/TimeAttack'
 import { ROUTES } from '@/shared/const/routes'
-import NetworkHeader from '@/widgets/NetworkHeader'
 import RaceLayout from '@/layouts/RaceLayout'
 import {
   // createBrowserRouter,
@@ -22,40 +21,49 @@ import {
   Routes,
 } from 'react-router-dom'
 import AppLayout from '@/layouts/AppLayout'
+import NetworkLayout from '@/layouts/NetworkLayout'
+import MagazineLayout from '@/layouts/MagazineLayout'
 
-export function AppRouter() {
+
+export function AppRoutes() {
+  return(
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<MainPage />} />
+        
+        <Route path={ROUTES.RACE_TAXI.BASE} element={<RaceLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path={ROUTES.RACE_TAXI.FORZA} element={<ForzaCarting />} />
+          <Route path={ROUTES.RACE_TAXI.DRIFT} element={<Drift />} />
+          <Route
+            path={ROUTES.RACE_TAXI.TIME_ATTACK}
+            element={<TimeAttack />}
+          />
+        </Route>
+        
+        <Route path={ROUTES.NEWS_MAGAZINE.BASE} element={<MagazineLayout />}>
+          <Route index element={<Guest />} />
+          <Route path={ROUTES.NEWS_MAGAZINE.NEWS} element={<NewsFeed />} />
+          <Route path={ROUTES.NEWS_MAGAZINE.NEWS_DEATILS} element={<News />} />
+          <Route path='*' element={<NotFoundNews />} />
+        </Route>
+        
+        <Route path={ROUTES.SOCIAL_NETWORK.BASE} element={<NetworkLayout />}>
+          <Route index element={<Feed />} />
+          <Route path={ROUTES.SOCIAL_NETWORK.POST_DETAILS} element={<Post />} />
+          <Route path={ROUTES.SOCIAL_NETWORK.NEW_POST} element={<CreatePost />} />
+        </Route>
+
+        <Route path='*' element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  )
+}
+
+function AppRouter() {
   return (
     <BrowserRouter basename="/react-router">
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<MainPage />} />
-          
-          <Route path={ROUTES.RACE_TAXI.BASE} element={<RaceLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path={ROUTES.RACE_TAXI.FORZA} element={<ForzaCarting />} />
-            <Route path={ROUTES.RACE_TAXI.DRIFT} element={<Drift />} />
-            <Route
-              path={ROUTES.RACE_TAXI.TIME_ATTACK}
-              element={<TimeAttack />}
-            />
-          </Route>
-          
-          <Route path={ROUTES.NEWS_MAGAZINE.BASE} element={<NetworkHeader/>}>
-            <Route index element={<Guest />} />
-            <Route path={ROUTES.NEWS_MAGAZINE.NEWS} element={<NewsFeed />} />
-            <Route path={ROUTES.NEWS_MAGAZINE.NEWS_DEATILS} element={<News />} />
-            <Route path='*' element={<NotFoundNews />} />
-          </Route>
-          
-          <Route path={ROUTES.SOCIAL_NETWORK.BASE}>
-            <Route index element={<Feed />} />
-            <Route path={ROUTES.SOCIAL_NETWORK.POST_DETAILS} element={<Post />} />
-            <Route path={ROUTES.SOCIAL_NETWORK.NEW_POST} element={<CreatePost />} />
-          </Route>
-
-          <Route path='*' element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+      <AppRoutes />   
     </BrowserRouter>
   )
 }
