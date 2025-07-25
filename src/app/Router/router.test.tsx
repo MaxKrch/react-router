@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { AppRoutes } from './router'
+import { AppRoutes } from './routes'
 import { vi } from 'vitest'
 import { ROUTES } from '@/shared/const/routes'
 

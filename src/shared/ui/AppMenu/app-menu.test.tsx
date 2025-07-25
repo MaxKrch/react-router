@@ -21,7 +21,7 @@ describe('Component: RaceMenu', () => {
         )
         expect(screen.getByText(/Network/i)).toHaveAttribute(
             'href',
-            ROUTES.SOCIAL_NETWORK.POSTS
+            ROUTES.SOCIAL_NETWORK.POST_FEED
         )
         expect(screen.getByText(/Main Page/i)).toHaveAttribute(
             'href',

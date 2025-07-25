@@ -10,7 +10,7 @@ const AppMenu = () => {
         text-center uppercase font-semibold`
     const activeClasses = `${baseClasses} bg-blue-700 text-white` 
     const passiveClasses = `${baseClasses} bg-white`
-    
+
     return (
       <nav className="h-full flex gap-3 items-center w-full px-1">
         <NavLink
@@ -26,7 +26,7 @@ const AppMenu = () => {
           Magazine
         </NavLink>
         <NavLink
-          to={ROUTES.SOCIAL_NETWORK.POSTS}
+          to={ROUTES.SOCIAL_NETWORK.POST_FEED}
           className={({ isActive }) => (isActive ? activeClasses : passiveClasses)}
         >
           Network

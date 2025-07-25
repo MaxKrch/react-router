@@ -3,12 +3,12 @@ export const ROUTES = {
   NEWS_MAGAZINE: {
     BASE: '/magazine',
     GUEST: '/magazine',
-    NEWS: '/magazine/news/',
+    NEWS_FEED: '/magazine/news/',
     NEWS_DEATILS: '/magazine/:id',
   },
   SOCIAL_NETWORK: {
     BASE: '/social',
-    POSTS: '/social/posts',
+    POST_FEED: '/social/posts',
     NEW_POST: '/social/posts/new',
     POST_DETAILS: '/social/posts/:id',
   },
