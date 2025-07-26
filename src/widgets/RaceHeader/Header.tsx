@@ -1,4 +1,4 @@
-import RaceMenu from "@/shared/ui/RaceMenu"
+import RaceMenu from '@/shared/ui/RaceMenu'
 
 const RaceHeader = () => {
   return (
