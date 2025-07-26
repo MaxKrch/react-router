@@ -1,5 +1,5 @@
 const HomePage = () => {
-  return( 
+  return (
     <article className="race-article">
       <h1 className="race-article__title">Гоночн​ое такси</h1>
       <p className="race-article__paragraph">
@@ -14,4 +14,3 @@ const HomePage = () => {
 }
 
 export default HomePage
-

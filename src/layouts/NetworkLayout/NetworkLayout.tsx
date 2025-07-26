@@ -1,9 +1,7 @@
-import NewsHeader from "@/widgets/NetworkHeader"
+import NewsHeader from '@/widgets/NetworkHeader'
 
 const NetworkLayout = () => {
-    return(
-        <NewsHeader />
-    )
+  return <NewsHeader />
 }
 
-export default NetworkLayout;
+export default NetworkLayout

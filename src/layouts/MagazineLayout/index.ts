@@ -1,1 +1,1 @@
-export { default } from './MagazineLayout';
+export { default } from './MagazineLayout'
