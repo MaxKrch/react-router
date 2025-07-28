@@ -1,5 +1,6 @@
 import RaceLayout from '@/layouts/RaceLayout'
 import { ROUTES } from '@/shared/const/routes'
+import lazyRoute from '@/shared/lib/lazy-router.ts/lazy-router'
 import type { RouteObject } from 'react-router-dom'
 
 const raceRoutes: RouteObject = {
@@ -8,43 +9,19 @@ const raceRoutes: RouteObject = {
   children: [
     {
       index: true,
-      lazy: async () => {
-        const { default: HomePage } = await import('@/pages/RaceTaxi/Home')
-        return {
-          element: <HomePage />,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/Home')),
     },
     {
       path: ROUTES.RACE_TAXI.FORZA,
-      lazy: async () => {
-        const { default: ForzaCarting } = await import(
-          '@/pages/RaceTaxi/ForzaCarting'
-        )
-        return {
-          element: <ForzaCarting />,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/ForzaCarting')),
     },
     {
       path: ROUTES.RACE_TAXI.DRIFT,
-      lazy: async () => {
-        const { default: Drift } = await import('@/pages/RaceTaxi/Drift')
-        return {
-          element: <Drift />,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/Drift'))
     },
     {
       path: ROUTES.RACE_TAXI.TIME_ATTACK,
-      lazy: async () => {
-        const { default: TimeAttack } = await import(
-          '@/pages/RaceTaxi/TimeAttack'
-        )
-        return {
-          element: <TimeAttack />,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/TimeAttack'))
     },
   ],
 }

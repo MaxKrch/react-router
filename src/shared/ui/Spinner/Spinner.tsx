@@ -15,7 +15,7 @@ const Spinner = ({ x = `25%`, y = `50%` }: { x?: string; y?: string }) => {
   return (
     <div
       data-testid="spinner"
-      className="w-full h-full flex items-center justify-center bg-gray-100"
+      className="w-full h-full flex items-center justify-center bg-white bg-opacity-10"
     >
       <div className="w-[25%] m-[10%] aspect-square min-w-[150px] max-w-[450px] relative">
         <div className="absolute h-[45%] w-[45%] top-[3%] left-[50%] translate-x-[-50%]">

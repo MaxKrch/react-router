@@ -4,6 +4,7 @@ import AppLayout from '@/layouts/AppLayout'
 import networkRoutes from './network.routes'
 import magazineRoutes from './magazine.routes'
 import raceRoutes from './race.routes'
+import lazyRoute from '@/shared/lib/lazy-router.ts/lazy-router'
 
 const routes: RouteObject[] = [
   {
@@ -19,12 +20,7 @@ const routes: RouteObject[] = [
       networkRoutes,
       {
         path: '*',
-        lazy: async () => {
-          const { default: NotFoundPage } = await import('@/pages/NotFoundPage')
-          return {
-            element: <NotFoundPage />,
-          }
-        },
+        ...lazyRoute(() => import('@/pages/NotFoundPage'))
       },
     ],
   },
