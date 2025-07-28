@@ -1,7 +1,6 @@
 import RaceLayout from '@/layouts/RaceLayout'
 import { ROUTES } from '@/shared/const/routes'
-import Spinner from '@/shared/ui/Spinner'
-import { Suspense } from 'react'
+import lazyRoute from '@/shared/lib/lazy-router.ts/lazy-router'
 import type { RouteObject } from 'react-router-dom'
 
 const raceRoutes: RouteObject = {
@@ -10,43 +9,19 @@ const raceRoutes: RouteObject = {
   children: [
     {
       index: true,
-      lazy: async () => {
-        const { default: HomePage } = await import('@/pages/RaceTaxi/Home')
-        return {
-          element: <Suspense fallback={<Spinner />}><HomePage /></Suspense>,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/Home')),
     },
     {
       path: ROUTES.RACE_TAXI.FORZA,
-      lazy: async () => {
-        const { default: ForzaCarting } = await import(
-          '@/pages/RaceTaxi/ForzaCarting'
-        )
-        return {
-          element: <Suspense fallback={<Spinner />}><ForzaCarting /></Suspense>,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/ForzaCarting')),
     },
     {
       path: ROUTES.RACE_TAXI.DRIFT,
-      lazy: async () => {
-        const { default: Drift } = await import('@/pages/RaceTaxi/Drift')
-        return {
-          element: <Suspense fallback={<Spinner />}><Drift /></Suspense>,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/Drift'))
     },
     {
       path: ROUTES.RACE_TAXI.TIME_ATTACK,
-      lazy: async () => {
-        const { default: TimeAttack } = await import(
-          '@/pages/RaceTaxi/TimeAttack'
-        )
-        return {
-          element: <Suspense fallback={<Spinner />}><TimeAttack /></Suspense>,
-        }
-      },
+      ...lazyRoute(() => import('@/pages/RaceTaxi/TimeAttack'))
     },
   ],
 }

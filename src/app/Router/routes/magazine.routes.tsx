@@ -35,18 +35,7 @@ const magazineRoutes = {
           element: <NewsDetails />,
         }
       },
-    },
-    {
-      path: '*',
-      lazy: async () => {
-        const { default: NotFoundNews } = await import(
-          '@/pages/Magazine/NotFoundNews'
-        )
-        return {
-          element: <NotFoundNews />,
-        }
-      },
-    },
+    },   
   ],
 }
 
