@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import RaceHeader from '@/widgets/RaceHeader'
 import ErrorBoundary from '@/app/ErrorBoundary'
+import NavigationLoader from '@/shared/ui/NavigationLoader/NagitionLoader'
 
 const RaceLayout = () => {
   return (
@@ -8,7 +9,9 @@ const RaceLayout = () => {
       <ErrorBoundary>
         <RaceHeader />
         <div className="race-body">
-          <Outlet />
+          <NavigationLoader>
+            <Outlet />
+          </NavigationLoader>
         </div>
       </ErrorBoundary>
     </div>

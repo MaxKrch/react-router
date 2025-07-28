@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@/shared/ui/Spinner/spinner.style.css";
 
 * {
   box-sizing: border-box;

@@ -1,5 +1,7 @@
 import RaceLayout from '@/layouts/RaceLayout'
 import { ROUTES } from '@/shared/const/routes'
+import Spinner from '@/shared/ui/Spinner'
+import { Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
 
 const raceRoutes: RouteObject = {
@@ -11,7 +13,7 @@ const raceRoutes: RouteObject = {
       lazy: async () => {
         const { default: HomePage } = await import('@/pages/RaceTaxi/Home')
         return {
-          element: <HomePage />,
+          element: <Suspense fallback={<Spinner />}><HomePage /></Suspense>,
         }
       },
     },
@@ -22,7 +24,7 @@ const raceRoutes: RouteObject = {
           '@/pages/RaceTaxi/ForzaCarting'
         )
         return {
-          element: <ForzaCarting />,
+          element: <Suspense fallback={<Spinner />}><ForzaCarting /></Suspense>,
         }
       },
     },
@@ -31,7 +33,7 @@ const raceRoutes: RouteObject = {
       lazy: async () => {
         const { default: Drift } = await import('@/pages/RaceTaxi/Drift')
         return {
-          element: <Drift />,
+          element: <Suspense fallback={<Spinner />}><Drift /></Suspense>,
         }
       },
     },
@@ -42,7 +44,7 @@ const raceRoutes: RouteObject = {
           '@/pages/RaceTaxi/TimeAttack'
         )
         return {
-          element: <TimeAttack />,
+          element: <Suspense fallback={<Spinner />}><TimeAttack /></Suspense>,
         }
       },
     },

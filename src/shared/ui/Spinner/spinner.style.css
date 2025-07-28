@@ -1,0 +1,66 @@
+@theme {
+  --animate-diamond-fly-up: diamond-fly-up 3s ease-in-out infinite;
+  --animate-diamond-fly-down: diamond-fly-down 3s ease-in-out infinite;
+  --animate-diamond-fly-right: diamond-fly-right 3s ease-in-out infinite;
+  --animate-diamond-fly-left: diamond-fly-left 3s ease-in-out infinite;
+
+  @keyframes diamond-fly-up {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    40% {
+      transform: translate(0, calc(-1 * var(--y))) rotate(0deg);
+    }
+    60% {
+      transform: translate(0, calc(-1 * var(--y))) rotate(180deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(180deg);
+    }
+  }
+
+  @keyframes diamond-fly-down {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    40% {
+      transform: translate(0, var(--y)) rotate(0deg);
+    }
+    60% {
+      transform: translate(0, var(--y)) rotate(180deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(180deg);
+    }
+  }
+
+  @keyframes diamond-fly-right {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    40% {
+      transform: translate(var(--x), 0) rotate(0deg);
+    }
+    60% {
+      transform: translate(var(--x), 0) rotate(180deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(180deg);
+    }
+  }
+
+  @keyframes diamond-fly-left {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    40% {
+      transform: translate(calc(-1 * var(--x)), 0) rotate(0deg);
+    }
+    60% {
+      transform: translate(calc(-1 * var(--x)), 0) rotate(180deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(180deg);
+    }
+  }
+}
