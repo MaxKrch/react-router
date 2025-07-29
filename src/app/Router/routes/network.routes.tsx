@@ -1,5 +1,6 @@
 import { ROUTES } from '@/shared/const/routes'
 import NetworkLayout from '@/layouts/NetworkLayout'
+import lazyRouter from '@/shared/lib/lazy-router.ts/lazy-router'
 
 const networkRoutes = {
   path: ROUTES.SOCIAL_NETWORK.BASE,
@@ -7,35 +8,20 @@ const networkRoutes = {
   children: [
     {
       index: true,
-      lazy: async () => {
-        const { default: PostFeed } = await import('@/pages/Network/PostFeed')
-        return {
-          element: <PostFeed />,
-        }
-      },
+      ...lazyRouter(() => import('@/pages/Network/PostFeed'))
     },
     {
       path: ROUTES.SOCIAL_NETWORK.POST_DETAILS,
-      lazy: async () => {
-        const { default: PostDetails } = await import(
-          '@/pages/Network/PostDetails'
-        )
-        return {
-          element: <PostDetails />,
-        }
-      },
+      ...lazyRouter(() => import('@/pages/Network/PostDetails'))
     },
     {
       path: ROUTES.SOCIAL_NETWORK.NEW_POST,
-      lazy: async () => {
-        const { default: CreatePost } = await import(
-          '@/pages/Network/CreatePost'
-        )
-        return {
-          element: <CreatePost />,
-        }
-      },
+      ...lazyRouter(() => import('@/pages/Network/CreatePost'))
     },
+    {
+      path: ROUTES.SOCIAL_NETWORK.EDIT_POST,
+      ...lazyRouter(() => import('@/pages/Network/EditPost')),
+    }
   ],
 }
 export default networkRoutes
