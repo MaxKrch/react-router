@@ -1,4 +1,4 @@
-import type { Post } from "@/shared/types/posts"
+import type { PostType } from "@/shared/types/posts"
 import type { State } from "./PostContext";
 
 export const ACTIONS = {
@@ -9,10 +9,10 @@ export const ACTIONS = {
 } as const
 
 export type ACTIONS_TYPE = 
-    | { type: typeof ACTIONS.SET_POSTS, payload: Post[] } 
-    | { type: typeof ACTIONS.ADD_POST, payload: Post }
-    | { type: typeof ACTIONS.UPDATE_POST, payload: Post }
-    | { type: typeof ACTIONS.REMOVE_POST, payload: Post['id'] }
+    | { type: typeof ACTIONS.SET_POSTS, payload: PostType[] } 
+    | { type: typeof ACTIONS.ADD_POST, payload: PostType }
+    | { type: typeof ACTIONS.UPDATE_POST, payload: PostType }
+    | { type: typeof ACTIONS.REMOVE_POST, payload: PostType['id'] }
 
 const postReducer = (state: State, action: ACTIONS_TYPE) => {
     switch(action.type) {

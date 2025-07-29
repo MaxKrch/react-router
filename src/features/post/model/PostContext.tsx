@@ -1,9 +1,9 @@
-import type { Post } from "@/shared/types/posts";
+import type { PostType } from "@/shared/types/posts";
 import { createContext, useReducer, type Dispatch, type PropsWithChildren } from "react";
 import type { ACTIONS_TYPE } from "./postsReducer";
 import postReducer from "./postsReducer";
 
-const initState: Post[] = [];
+const initState: PostType[] = [];
 export type State = typeof initState
 
 export const PostContextState = createContext(initState);

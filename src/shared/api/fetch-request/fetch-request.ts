@@ -7,7 +7,7 @@ type Request = {
   options: RequestInit
 }
 
-type RequestResult<T> = {
+export type RequestResult<T> = {
   status: typeof STATUS.ERROR | typeof STATUS.SUCCESS
   error?: Error
   data?: T

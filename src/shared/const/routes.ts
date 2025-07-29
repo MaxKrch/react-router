@@ -7,12 +7,15 @@ export const ROUTES = {
     NEWS_DEATILS: '/magazine/:id',
   },
   SOCIAL_NETWORK: {
-    BASE: '/social',
-    POST_FEED: '/social/posts',
-    POST_DETAILS: '/social/posts/:id',
-    NEW_POST: '/social/posts/new',
-    EDIT_POST: '/social/delete/:id',
-    UPDATE_POST: '/social/update/:id',
+    BASE: '/network',
+    POST_FEED: '/network/posts',
+    POST_DETAILS: '/network/posts/:id',
+    NEW_POST: '/network/posts/new',
+    EDIT_POST: '/network/posts/edit/:id',
+    
+    CREATE_POST: './network/posts/create',
+    UPDATE_POST: '/network/posts/:id/update',
+    REMOVE_POST: '/network/posts/:id/remove',
   },
   RACE_TAXI: {
     BASE: '/race',
