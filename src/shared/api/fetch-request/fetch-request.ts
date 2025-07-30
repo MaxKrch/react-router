@@ -27,13 +27,23 @@ const fetchRequest = async <T>(req: Request): Promise<RequestResult<T>> => {
     const resp = await fetch(req.url, fullOptions)
 
     if (!resp.ok) throw new Error(`Bad Response`)
-
-    const data = await resp.json()
+    
     const response: RequestResult<T> = {
       status: STATUS.SUCCESS,
-      data,
+    }; 
+    
+    const isJson = resp.headers.get('content-type')?.includes('application/json')
+
+    if (resp.status !== 204 && isJson) {
+      try {
+        response.data = await resp.json()
+      } catch {
+
+      }
     }
+
     return response
+
   } catch (err) {
     const response: RequestResult<T> = {
       status: STATUS.ERROR,

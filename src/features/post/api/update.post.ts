@@ -3,7 +3,9 @@ import fetchRequest from "@/shared/api/fetch-request/fetch-request";
 import { API_ROUTES } from "@/shared/const/api-routes";
 import type { PostType } from "@/shared/types/posts";
 
-const updatePost = (post: PostType) => {
+const updatePost = (post: Partial<PostType>) => {
+     if(!post.id) throw new Error("Missing Post id");
+
     const targetApi = API_ROUTES.UPDATE_POST(post.id);
     const url = `${BASE_URL}${targetApi.url}`;
     const options = {

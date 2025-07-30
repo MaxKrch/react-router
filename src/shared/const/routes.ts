@@ -13,7 +13,7 @@ export const ROUTES = {
     NEW_POST: '/network/posts/new',
     EDIT_POST: '/network/posts/edit/:id',
     
-    CREATE_POST: './network/posts/create',
+    CREATE_POST: '/network/posts/create',
     UPDATE_POST: '/network/posts/:id/update',
     REMOVE_POST: '/network/posts/:id/remove',
   },
