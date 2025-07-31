@@ -1,2 +1,2 @@
-export * from './token-storage';
-export * from './user-storage';
+export * from './token-storage'
+export * from './user-storage'

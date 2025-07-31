@@ -38,7 +38,7 @@ describe('fetchRequest function', () => {
       vi.mocked(global.fetch).mockResolvedValueOnce({
         ok: true,
         headers: {
-          get: () => ['application/json']
+          get: () => ['application/json'],
         },
         json: () => Promise.resolve(mockResponseData),
       } as unknown as Response)
@@ -60,7 +60,7 @@ describe('fetchRequest function', () => {
       vi.mocked(global.fetch).mockResolvedValueOnce({
         ok: true,
         headers: {
-          get: () => ['application/json']
+          get: () => ['application/json'],
         },
         json: () => Promise.resolve(mockResponseData),
       } as unknown as Response)
@@ -90,7 +90,7 @@ describe('fetchRequest function', () => {
       vi.mocked(global.fetch).mockResolvedValueOnce({
         ok: true,
         headers: {
-          get: () => []
+          get: () => [],
         },
         json: () => Promise.resolve(mockResponseData),
       } as unknown as Response)

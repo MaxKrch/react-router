@@ -1,5 +1,5 @@
-import { STATUS } from "@/shared/const/status"
-import { tokenStorage } from "@/shared/lib/storage"
+import { STATUS } from '@/shared/const/status'
+import { tokenStorage } from '@/shared/lib/storage'
 
 type Request = {
   url: string
@@ -27,23 +27,22 @@ const fetchRequest = async <T>(req: Request): Promise<RequestResult<T>> => {
     const resp = await fetch(req.url, fullOptions)
 
     if (!resp.ok) throw new Error(`Bad Response`)
-    
+
     const response: RequestResult<T> = {
       status: STATUS.SUCCESS,
-    }; 
-    
-    const isJson = resp.headers.get('content-type')?.includes('application/json')
+    }
+
+    const isJson = resp.headers
+      .get('content-type')
+      ?.includes('application/json')
 
     if (resp.status !== 204 && isJson) {
       try {
         response.data = await resp.json()
-      } catch {
-
-      }
+      } catch {}
     }
 
     return response
-
   } catch (err) {
     const response: RequestResult<T> = {
       status: STATUS.ERROR,

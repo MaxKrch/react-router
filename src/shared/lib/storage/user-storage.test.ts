@@ -1,5 +1,5 @@
 import type { UserProfile } from '@/shared/types'
-import { userStorage } from './user-storage';
+import { userStorage } from './user-storage'
 
 describe('Helper: userStorage', () => {
   const profile: UserProfile = {
@@ -8,7 +8,7 @@ describe('Helper: userStorage', () => {
     name: 'Max',
     avatar: `http://www.avatar.com/1`,
   }
-  const profileKey = 'profile';
+  const profileKey = 'profile'
 
   beforeEach(() => {
     localStorage.clear()
@@ -52,10 +52,9 @@ describe('Helper: userStorage', () => {
     it('should remove the profile from localStorage', () => {
       userStorage.setProfile(profile)
 
-     
-      expect( JSON.parse(
-        localStorage.getItem(profileKey) ?? `{}`
-      )).toEqual(profile)
+      expect(JSON.parse(localStorage.getItem(profileKey) ?? `{}`)).toEqual(
+        profile
+      )
 
       userStorage.removeProfile()
       const received = localStorage.getItem(profileKey)

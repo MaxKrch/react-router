@@ -1,4 +1,4 @@
-import type { UserProfile } from "@/shared/types"
+import type { UserProfile } from '@/shared/types'
 
 const PROFILE = {
   STORAGE: localStorage,

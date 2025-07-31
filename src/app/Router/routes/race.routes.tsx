@@ -17,11 +17,11 @@ const raceRoutes: RouteObject = {
     },
     {
       path: ROUTES.RACE_TAXI.DRIFT,
-      ...lazyRoute(() => import('@/pages/RaceTaxi/Drift'))
+      ...lazyRoute(() => import('@/pages/RaceTaxi/Drift')),
     },
     {
       path: ROUTES.RACE_TAXI.TIME_ATTACK,
-      ...lazyRoute(() => import('@/pages/RaceTaxi/TimeAttack'))
+      ...lazyRoute(() => import('@/pages/RaceTaxi/TimeAttack')),
     },
   ],
 }

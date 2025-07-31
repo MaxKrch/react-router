@@ -1,8 +1,8 @@
-import { tokenStorage } from "./token-storage";
+import { tokenStorage } from './token-storage'
 
 describe('Helper: tokenStorage', () => {
   const token = '12ggfh-jkls-kkjk-54jhj25s'
-  const tokenKey = 'token';
+  const tokenKey = 'token'
 
   beforeEach(() => {
     localStorage.clear()

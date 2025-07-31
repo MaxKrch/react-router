@@ -6,12 +6,7 @@ const Router = createBrowserRouter(routes, {
 })
 
 const AppRouter = () => {
-
-  return (
-    <RouterProvider 
-        router={Router}
-    />
-  )
+  return <RouterProvider router={Router} />
 }
 
 export default AppRouter

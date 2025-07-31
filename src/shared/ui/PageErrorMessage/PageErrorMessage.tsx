@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const PageErrorMessage = () => {
   const navigate = useNavigate()
@@ -16,13 +16,9 @@ const PageErrorMessage = () => {
 
   return (
     <div className="flex justify-center items-center flex-col gap-4 p-4 bg-white bg-opacity-50 h-full w-full">
-      <h2 className="text-2xl">
-        Кажется, что-то пошло не так
-      </h2>
-      
-      <div className="text-lg">
-        Cкоро все починим!
-      </div>
+      <h2 className="text-2xl">Кажется, что-то пошло не так</h2>
+
+      <div className="text-lg">Cкоро все починим!</div>
 
       <div className="flex gap-4">
         <button
@@ -42,6 +38,5 @@ const PageErrorMessage = () => {
     </div>
   )
 }
-
 
 export default PageErrorMessage

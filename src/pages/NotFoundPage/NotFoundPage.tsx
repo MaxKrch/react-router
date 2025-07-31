@@ -1,5 +1,5 @@
-import { ROUTES } from "@/shared/const/routes"
-import { useNavigate } from "react-router-dom"
+import { ROUTES } from '@/shared/const/routes'
+import { useNavigate } from 'react-router-dom'
 
 const NotFoundPage = () => {
   const navigate = useNavigate()
@@ -15,9 +15,7 @@ const NotFoundPage = () => {
       <div className="flex gap-1 text-sm">
         Похоже на ошибку <p>404</p>
       </div>
-      <div className="text-sm">
-        Хотите вернуться обратно?
-      </div>      
+      <div className="text-sm">Хотите вернуться обратно?</div>
       <div className="flex gap-2">
         <button
           className="px-4 py-2 bg-blue-600 font-sm text-white cursor-pointer min-w-24 font-semibold rounded hover:bg-blue-700"
