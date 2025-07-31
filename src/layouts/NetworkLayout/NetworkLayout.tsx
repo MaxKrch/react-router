@@ -1,7 +1,15 @@
-import NewsHeader from '@/widgets/NetworkHeader'
+import SectionErrorBoundary from '@/app/Router/error-boundary/SectionErrorBoundary'
+import PostContext from '@/features/post/model/PostContext'
+import { Outlet } from 'react-router-dom'
 
 const NetworkLayout = () => {
-  return <NewsHeader />
+  return (
+    <SectionErrorBoundary>
+      <PostContext>
+        <Outlet />
+      </PostContext>
+    </SectionErrorBoundary>
+  )
 }
 
 export default NetworkLayout

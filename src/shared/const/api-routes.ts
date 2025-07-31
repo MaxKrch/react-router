@@ -1,5 +1,5 @@
-import type { News } from '../types/news'
-import type { Post } from '../types/posts'
+import type { NewsType } from '../types/news'
+import type { PostType } from '../types/posts'
 
 export const API_ROUTES = {
   AUTH: {
@@ -14,7 +14,7 @@ export const API_ROUTES = {
     method: 'GET',
     url: '/private/news',
   },
-  NEWS_DETAILS: (id: News['id']) => ({
+  NEWS_DETAILS: (id: NewsType['id']) => ({
     method: 'GET',
     url: `/private/news/${id}`,
   }),
@@ -22,7 +22,7 @@ export const API_ROUTES = {
     method: 'GET',
     url: '/posts',
   },
-  POST_DETAILS: (id: Post['id']) => ({
+  POST_DETAILS: (id: PostType['id']) => ({
     method: 'GET',
     url: `/posts/${id}`,
   }),
@@ -30,11 +30,11 @@ export const API_ROUTES = {
     method: 'POST',
     url: '/posts',
   },
-  UPDATE_POST: (id: Post['id']) => ({
+  UPDATE_POST: (id: PostType['id']) => ({
     method: 'PUT',
     url: `/posts/${id}`,
   }),
-  REMOVE_POST: (id: Post['id']) => ({
+  REMOVE_POST: (id: PostType['id']) => ({
     method: 'DELETE',
     url: `/posts/${id}`,
   }),

@@ -20,7 +20,7 @@ const routes: RouteObject[] = [
       networkRoutes,
       {
         path: '*',
-        ...lazyRoute(() => import('@/pages/NotFoundPage'))
+        ...lazyRoute(() => import('@/pages/NotFoundPage')),
       },
     ],
   },

@@ -1,17 +1,11 @@
-import Spinner from "@/shared/ui/Spinner"
-import type { PropsWithChildren } from "react"
-import { useNavigation } from "react-router-dom"
+import Spinner from '@/shared/ui/Spinner'
+import type { PropsWithChildren } from 'react'
+import { useNavigation } from 'react-router-dom'
 
-const NavigationLoader = ({children}: PropsWithChildren) => {
-    const navigation = useNavigation()
+const NavigationLoader = ({ children }: PropsWithChildren) => {
+  const navigation = useNavigation()
 
-     return navigation.state === 'loading'
-        ? <Spinner />
-        : (
-            <>
-                {children}
-            </>
-        )
+  return navigation.state === 'loading' ? <Spinner /> : <>{children}</>
 }
 
-export default NavigationLoader;
+export default NavigationLoader

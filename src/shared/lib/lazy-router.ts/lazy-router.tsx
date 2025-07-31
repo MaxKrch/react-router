@@ -1,4 +1,4 @@
-import PageErrorMessage from '@/shared/ui/PageErrorMessage';
+import PageErrorMessage from '@/shared/ui/PageErrorMessage'
 import { Suspense, type ComponentType } from 'react'
 import type { RouteObject } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ const lazyRouter = (
 ): Pick<RouteObject, 'lazy' | 'errorElement'> => ({
   lazy: async () => {
     try {
-      const { default: Component } = await loader();
+      const { default: Component } = await loader()
 
       return {
         Component: () => (
@@ -15,15 +15,15 @@ const lazyRouter = (
             <Component />
           </Suspense>
         ),
-      };
+      }
     } catch (error) {
-      console.error('Ошибка загрузки модуля:', error);
+      console.error('Ошибка загрузки модуля:', error)
       return {
-        Component: () => <PageErrorMessage/>
+        Component: () => <PageErrorMessage />,
       }
     }
   },
-  errorElement: <PageErrorMessage/>
-});
+  errorElement: <PageErrorMessage />,
+})
 
 export default lazyRouter

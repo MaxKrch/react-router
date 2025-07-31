@@ -15,11 +15,11 @@ describe('PageErrorMessage', () => {
   beforeEach(() => {
     vi.mocked(useNavigate).mockReturnValue(mockNavigate)
     vi.mocked(useLocation).mockReturnValue({
-        pathname: '/test',
-        search: '',
-        hash: '',
-        state: null,
-        key: 'test-key',
+      pathname: '/test',
+      search: '',
+      hash: '',
+      state: null,
+      key: 'test-key',
     })
   })
 
@@ -32,14 +32,18 @@ describe('PageErrorMessage', () => {
 
     expect(screen.getByText('Кажется, что-то пошло не так')).toBeInTheDocument()
     expect(screen.getByText('Cкоро все починим!')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Перезагрузить страницу' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Перезагрузить страницу' })
+    ).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Назад' })).toBeInTheDocument()
   })
 
   it('calls navigate with current pathname on reload', () => {
     render(<PageErrorMessage />, { wrapper: MemoryRouter })
 
-    fireEvent.click(screen.getByRole('button', { name: 'Перезагрузить страницу' }))
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Перезагрузить страницу' })
+    )
     expect(mockNavigate).toHaveBeenCalledWith('/test', { replace: true })
   })
 

@@ -1,5 +1,13 @@
-import { ROUTES } from '@/shared/const/routes'
 import NetworkLayout from '@/layouts/NetworkLayout'
+import { ROUTES } from '@/shared/const/routes'
+import lazyRouter from '@/shared/lib/lazy-router.ts/lazy-router'
+import { Navigate } from 'react-router-dom'
+import {
+  createPostAction,
+  deletePostAction,
+  networkLoader,
+  updatePostAction,
+} from './network.actions'
 
 const networkRoutes = {
   path: ROUTES.SOCIAL_NETWORK.BASE,
@@ -7,34 +15,40 @@ const networkRoutes = {
   children: [
     {
       index: true,
-      lazy: async () => {
-        const { default: PostFeed } = await import('@/pages/Network/PostFeed')
-        return {
-          element: <PostFeed />,
-        }
-      },
+      element: <Navigate to={ROUTES.SOCIAL_NETWORK.POST_FEED} replace={true} />,
+    },
+    {
+      path: ROUTES.SOCIAL_NETWORK.POST_FEED,
+      loader: networkLoader,
+      ...lazyRouter(() => import('@/pages/Network/PostFeed')),
+      children: [
+        {
+          path: ROUTES.SOCIAL_NETWORK.CREATE_POST,
+          action: createPostAction,
+        },
+      ],
     },
     {
       path: ROUTES.SOCIAL_NETWORK.POST_DETAILS,
-      lazy: async () => {
-        const { default: PostDetails } = await import(
-          '@/pages/Network/PostDetails'
-        )
-        return {
-          element: <PostDetails />,
-        }
-      },
+      ...lazyRouter(() => import('@/pages/Network/PostDetails')),
+      children: [
+        {
+          path: ROUTES.SOCIAL_NETWORK.UPDATE_POST,
+          action: updatePostAction,
+        },
+        {
+          path: ROUTES.SOCIAL_NETWORK.REMOVE_POST,
+          action: deletePostAction,
+        },
+      ],
     },
     {
       path: ROUTES.SOCIAL_NETWORK.NEW_POST,
-      lazy: async () => {
-        const { default: CreatePost } = await import(
-          '@/pages/Network/CreatePost'
-        )
-        return {
-          element: <CreatePost />,
-        }
-      },
+      ...lazyRouter(() => import('@/pages/Network/CreatePost')),
+    },
+    {
+      path: ROUTES.SOCIAL_NETWORK.EDIT_POST,
+      ...lazyRouter(() => import('@/pages/Network/EditPost')),
     },
   ],
 }

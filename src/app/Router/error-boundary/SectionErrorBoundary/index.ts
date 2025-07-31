@@ -1,1 +1,1 @@
-export { default } from './SectionErrorBoundary';
+export { default } from './SectionErrorBoundary'

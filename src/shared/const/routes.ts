@@ -5,14 +5,17 @@ export const ROUTES = {
     GUEST: '/magazine',
     NEWS_FEED: '/magazine/news/',
     NEWS_DEATILS: '/magazine/:id',
-    NEWS_DELETE: '/magazine/delete/:id',
-    NEWS_UPDATE: '/magazine/update/:id'
   },
   SOCIAL_NETWORK: {
-    BASE: '/social',
-    POST_FEED: '/social/posts',
-    NEW_POST: '/social/posts/new',
-    POST_DETAILS: '/social/posts/:id',
+    BASE: '/network',
+    POST_FEED: '/network/posts',
+    POST_DETAILS: '/network/posts/:id',
+    NEW_POST: '/network/posts/new',
+    EDIT_POST: '/network/posts/edit/:id',
+
+    CREATE_POST: '/network/posts/create',
+    UPDATE_POST: '/network/posts/:id/update',
+    REMOVE_POST: '/network/posts/:id/remove',
   },
   RACE_TAXI: {
     BASE: '/race',

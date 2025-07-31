@@ -1,7 +1,7 @@
-export type Post = {
-  temp_id?: string
+export type PostType = {
   saved: boolean
   content: string
-  id: number
-  created?: Date
+  id: number | null
+  created: number | null
+  edited: number | null
 }
