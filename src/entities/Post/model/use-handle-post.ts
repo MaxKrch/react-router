@@ -1,4 +1,4 @@
-import usePost from "@/features/post/model/use-posts";
+import usePostActions from "@/features/post/model/use-post-actions";
 import { ROUTES } from "@/shared/const/routes";
 import generatePathWithId from "@/shared/lib/router/generate-path-with-id";
 import type { PostType } from "@/shared/types/posts";
@@ -8,7 +8,7 @@ import { useFetcher, useNavigate } from "react-router-dom";
 const useHandlePost = (post: PostType) => {
     const fetcher = useFetcher();
     const navigate = useNavigate();
-    const { removePost } = usePost()
+    const { removePost } = usePostActions()
 
     const handleEditPost = useCallback(() => {
         if(!post.id) return;

@@ -37,9 +37,9 @@ const usePostDispatch = () => {
     }
 }
 
-const usePost = () => ({
+const usePostActions = () => ({
     state: usePostState(),
     ...usePostDispatch()
 })
 
-export default usePost;
+export default usePostActions;

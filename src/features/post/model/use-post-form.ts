@@ -1,7 +1,7 @@
 import type { PostType } from "@/shared/types/posts";
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { useFetcher, useNavigate } from "react-router-dom";
-import usePost from "./use-posts";
+import usePostActions from "./use-post-actions";
 import { STATUS } from "@/shared/const/status";
 import { ROUTES } from "@/shared/const/routes";
 import generatePathWithId from "@/shared/lib/router/generate-path-with-id";
@@ -31,7 +31,7 @@ const usePostForm = ({
     const currentSendingId = useRef<number | null>(null);
     const fetcher = useFetcher();
     const navigate = useNavigate();
-    const { addPost, removePost, updatePost } = usePost();
+    const { addPost, removePost, updatePost } = usePostActions();
 
     useEffect(() => {
         if(fetcher.state === 'idle' && fetcher.data) {    

@@ -37,6 +37,9 @@ describe('fetchRequest function', () => {
 
       vi.mocked(global.fetch).mockResolvedValueOnce({
         ok: true,
+        headers: {
+          get: () => ['application/json']
+        },
         json: () => Promise.resolve(mockResponseData),
       } as unknown as Response)
 
@@ -56,6 +59,9 @@ describe('fetchRequest function', () => {
 
       vi.mocked(global.fetch).mockResolvedValueOnce({
         ok: true,
+        headers: {
+          get: () => ['application/json']
+        },
         json: () => Promise.resolve(mockResponseData),
       } as unknown as Response)
 
@@ -73,6 +79,27 @@ describe('fetchRequest function', () => {
           }),
         })
       )
+      expect(received).toEqual(expected)
+    })
+
+    it('should return status SUCCESS without data on successful fetch without header content-type: application/json', async () => {
+      const expected = {
+        status: STATUS.SUCCESS,
+      }
+
+      vi.mocked(global.fetch).mockResolvedValueOnce({
+        ok: true,
+        headers: {
+          get: () => []
+        },
+        json: () => Promise.resolve(mockResponseData),
+      } as unknown as Response)
+
+      const received = await fetchRequest({
+        url: mockUrl,
+        options: mockRequestOptions,
+      })
+
       expect(received).toEqual(expected)
     })
   })

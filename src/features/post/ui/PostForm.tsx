@@ -22,18 +22,21 @@ const PostForm = forwardRef<HTMLFormElement, PostFormProps>((props, ref) => {
     const handleSumbit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
        
-        if(event.currentTarget.content.value.trim() < 3) {
+        const formData = new FormData(event.currentTarget);
+        const content = formData.get('content');
+
+        if(typeof content !== 'string' || content.trim().length < 3) {
             setFormError('Пост должен быть длиннее двух символов');
-            return
+            return;
         } else {
             setFormError(null);
             props.onSubmit()
         }
-
     }
 
     return(
         <form
+            data-testid="post-form"
             className="flex flex-col gap-2 p-2 rounded border border-white"
             ref={ref} 
             action={props.action} 

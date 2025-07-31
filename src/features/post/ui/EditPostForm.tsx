@@ -3,7 +3,7 @@ import PostForm from "./PostForm";
 import { ROUTES } from "@/shared/const/routes";
 import { useNavigate } from "react-router-dom";
 
-import usePostForm from "../model/use-post-form";
+import usePostForm from "@/features/post/model/use-post-form";
 import usePostDetails from "@/features/post/model/use-post-details";
 
 const EditPostForm = () => {

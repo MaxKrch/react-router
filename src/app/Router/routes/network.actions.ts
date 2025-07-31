@@ -1,7 +1,7 @@
 import createPost from "@/features/post/api/create-post";
 import deletePost from "@/features/post/api/delete-post";
 import loadPosts from "@/features/post/api/load-posts"
-import updatePost from "@/features/post/api/update.post";
+import updatePost from "@/features/post/api/update-post";
 import { ROUTES } from "@/shared/const/routes"
 import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs } from "react-router-dom"
 
@@ -14,7 +14,6 @@ export const networkLoader = async ({}: LoaderFunctionArgs) => {
 export const createPostAction = async ({request}: ActionFunctionArgs) => {
     const data = await request.formData();
     const post = Object.fromEntries(data.entries())
-  
     const result = await createPost(post);
 
     return result;
@@ -23,6 +22,11 @@ export const createPostAction = async ({request}: ActionFunctionArgs) => {
 export const updatePostAction = async ({request}: ActionFunctionArgs) => {
     const data = await request.formData();
     const post = Object.fromEntries(data.entries())
+    
+    if (!post.id) {
+        throw new Error("Post ID is missing");
+    }
+    
     const result = await updatePost(post);
 
     return result;
@@ -31,7 +35,7 @@ export const updatePostAction = async ({request}: ActionFunctionArgs) => {
 
 export const deletePostAction = async ({params}: ActionFunctionArgs) => {
     const id = params.id
-    console.log(id)
+
     if(!id) {
         throw new Error('Post ID is missing')
     }

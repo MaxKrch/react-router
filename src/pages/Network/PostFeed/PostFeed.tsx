@@ -1,5 +1,5 @@
 import Post from "@/entities/Post/ui/Post"
-import usePost from "@/features/post/model/use-posts"
+import usePostActions from "@/features/post/model/use-post-actions"
 import type { RequestResult } from "@/shared/api/fetch-request/fetch-request"
 import { ROUTES } from "@/shared/const/routes"
 import { STATUS } from "@/shared/const/status"
@@ -14,7 +14,7 @@ const PostFeed = () => {
   const { 
     state: posts,
     setPost
-  } = usePost()
+  } = usePostActions()
 
   useEffect(() => {
     if(loaderPosts.status === STATUS.SUCCESS && loaderPosts.data) setPost(loaderPosts.data)
