@@ -8,24 +8,25 @@ const SecondButton = ({
   size = 'normal',
   disabled = false,
 }: ButtonProps) => {
-  let fontSize: string
+  
+  let classes = `bg-white text-blue-800 border border-blue px-4 py-1 rounded cursor-pointer uppercase font-semibold hover:bg-gray-100`
 
   switch (size) {
     case 'small':
-      fontSize = '9px'
+      classes += ' text-[9px]'
       break
 
     case 'big':
-      fontSize = '15px'
+      classes += ' text-[15px]'
       break
 
     default:
-      fontSize = '11px'
+      classes += ' text-[11px]'
   }
 
   return (
     <button
-      className={`bg-white text-blue-800 border border-blue px-4 py-1 rounded cursor-pointer uppercase font-semibold text-[${fontSize}] hover:bg-gray-100`}
+      className={classes}
       disabled={disabled}
       onClick={onClick}
       type={type}

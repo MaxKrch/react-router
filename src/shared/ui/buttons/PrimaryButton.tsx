@@ -8,22 +8,22 @@ const PrimaryButton = ({
   size = 'normal',
   disabled = false,
 }: ButtonProps) => {
-  let fontSize: string
+
+  let classes = `text-white px-4 py-1 rounded uppercase font-semibold`
 
   switch (size) {
     case 'small':
-      fontSize = '10px'
+      classes += ' text-[10px]'
       break
 
     case 'big':
-      fontSize = '16px'
+      classes += ' text-[16px]'
       break
 
     default:
-      fontSize = '12px'
+      classes += ' text-[12px]'
   }
 
-  let classes = `text-white px-4 py-1 rounded uppercase font-semibold text-[${fontSize}]`
 
   disabled
     ? (classes += ` bg-blue-400`)

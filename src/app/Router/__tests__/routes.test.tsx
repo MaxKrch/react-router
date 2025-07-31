@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { createMemoryRouter, Outlet, RouterProvider } from 'react-router-dom'
+import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import routes from '@/app/Router/routes'
 
 describe('Routes: General', () => {

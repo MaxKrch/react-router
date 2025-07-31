@@ -1,5 +1,6 @@
 import MagazineLayout from '@/layouts/MagazineLayout'
-import { ROUTES } from '@/shared/const/routes'
+import { ROUTE_ACCESS, ROUTES } from '@/shared/const/routes'
+import lazyRouter from '@/shared/lib/lazy-router.ts/lazy-router'
 
 const magazineRoutes = {
   path: ROUTES.NEWS_MAGAZINE.BASE,
@@ -7,34 +8,21 @@ const magazineRoutes = {
   children: [
     {
       index: true,
-      lazy: async () => {
-        const { default: GuestPages } = await import(
-          '@/pages/Magazine/GuestPage'
-        )
-        return {
-          element: <GuestPages />,
-        }
-      },
+      ...lazyRouter(() => import('@/pages/Magazine/GuestPage'))
     },
     {
       path: ROUTES.NEWS_MAGAZINE.NEWS_FEED,
-      lazy: async () => {
-        const { default: NewsFeed } = await import('@/pages/Magazine/NewsFeed')
-        return {
-          element: <NewsFeed />,
-        }
-      },
+      ...lazyRouter(
+        () => import('@/pages/Magazine/NewsFeed'), 
+        ROUTE_ACCESS.AUTH
+      )
     },
     {
       path: ROUTES.NEWS_MAGAZINE.NEWS_DEATILS,
-      lazy: async () => {
-        const { default: NewsDetails } = await import(
-          '@/pages/Magazine/NewsDetails'
-        )
-        return {
-          element: <NewsDetails />,
-        }
-      },
+      ...lazyRouter(
+        () => import('@/pages/Magazine/NewsDetails'), 
+        ROUTE_ACCESS.AUTH,
+      )
     },
   ],
 }
