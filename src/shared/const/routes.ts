@@ -4,7 +4,7 @@ export const ROUTES = {
     BASE: '/magazine',
     GUEST: '/magazine',
     NEWS_FEED: '/magazine/news/',
-    NEWS_DEATILS: '/magazine/:id',
+    NEWS_DEATILS: '/magazine/news/:id',
   },
   SOCIAL_NETWORK: {
     BASE: '/network',
@@ -25,3 +25,11 @@ export const ROUTES = {
     FORZA: '/race/forza',
   },
 } as const
+
+export const ROUTE_ACCESS = {
+  ANY: 'any',
+  AUTH: 'auth',
+  NO_AUTH: 'noAuth',
+} as const
+
+export type ROUTE_ACCESS_TYPE = (typeof ROUTE_ACCESS)[keyof typeof ROUTE_ACCESS]
