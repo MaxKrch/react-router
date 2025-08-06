@@ -1,0 +1,1 @@
+import{r as s,j as e}from"./index-CqbA9mGu.js";const t=()=>e.jsxs("div",{"data-testid":"guestPage",className:"min-w-[320px] max-w-[1280px] w-full p-8 bg-gray-300 min-h-[320px] flex flex-col justify-center gap-4",children:[e.jsx("div",{className:"text-5xl",children:"Neto Social"}),e.jsx("div",{className:"text-lg",children:"It's here"})]}),x=s.memo(t);export{x as default};

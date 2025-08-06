@@ -1,0 +1,1 @@
+import{u}from"./use-post-actions-Dul85s0l.js";import{r as o,c as i}from"./index-CqbA9mGu.js";const p=()=>{const[e,n]=o.useState(null),r=i(),s=Number(r.id),{state:t}=u();return o.useEffect(()=>{const a=t.find(c=>c.id===s)??null;n(a)},[s,t]),e};export{p as u};

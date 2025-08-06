@@ -1,0 +1,1 @@
+import{j as s,P as o}from"./index-CqbA9mGu.js";import{P as r}from"./Post-CCMzq4SP.js";import{u as a}from"./use-post-details-ClWKZW30.js";import"./use-post-actions-Dul85s0l.js";import"./generate-path-with-id-IhUbEmIp.js";const P=()=>{const t=a();return s.jsx("div",{className:"p-4",children:t?s.jsx(r,{post:t}):s.jsx(o,{})})};export{P as default};
