@@ -1,4 +1,5 @@
 import PrivateRouter from '@/features/auth/ui/PrivateRouter'
+import PublicRouter from '@/features/auth/ui/PublicRouter'
 import { ROUTE_ACCESS, type ROUTE_ACCESS_TYPE } from '@/shared/const/routes'
 import PageErrorMessage from '@/shared/ui/PageErrorMessage'
 import Spinner from '@/shared/ui/Spinner'
@@ -9,6 +10,9 @@ const WithAccessWrapper = ({children, access}:PropsWithChildren<{access: ROUTE_A
   switch (access) {
     case ROUTE_ACCESS.AUTH:
       return <PrivateRouter>{children}</PrivateRouter>
+
+    case ROUTE_ACCESS.NO_AUTH:
+      return <PublicRouter>{children}</PublicRouter>
     
       default:
         return <>{children}</>

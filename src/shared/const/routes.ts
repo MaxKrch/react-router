@@ -4,7 +4,7 @@ export const ROUTES = {
     BASE: '/magazine',
     GUEST: '/magazine',
     NEWS_FEED: '/magazine/news/',
-    NEWS_DEATILS: '/magazine/:id',
+    NEWS_DEATILS: '/magazine/news/:id',
   },
   SOCIAL_NETWORK: {
     BASE: '/network',

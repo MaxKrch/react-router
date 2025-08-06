@@ -8,7 +8,10 @@ const magazineRoutes = {
   children: [
     {
       index: true,
-      ...lazyRouter(() => import('@/pages/Magazine/GuestPage'))
+      ...lazyRouter(
+        () => import('@/pages/Magazine/GuestPage'),
+        ROUTE_ACCESS.NO_AUTH
+      )
     },
     {
       path: ROUTES.NEWS_MAGAZINE.NEWS_FEED,
