@@ -1,7 +1,7 @@
-import { BASE_URL } from "@/config"
-import fetchRequest from "@/shared/api/fetch-request/fetch-request"
-import { API_ROUTES } from "@/shared/const/api-routes"
-import type { AuthRequestData, UserProfile } from "@/shared/types"
+import { BASE_URL } from '@/config'
+import fetchRequest from '@/shared/api/fetch-request/fetch-request'
+import { API_ROUTES } from '@/shared/const/api-routes'
+import type { AuthRequestData, UserProfile } from '@/shared/types'
 
 type RequestLogin = AuthRequestData & {
   signal?: AbortSignal

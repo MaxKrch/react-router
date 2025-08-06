@@ -46,18 +46,17 @@ const useAuth = () => {
         setLoginStatus(STATUS.SUCCESS)
         setUserStatus(AUTH_STATUS.AUTH)
         getProfile()
-        
-        return STATUS.SUCCESS;
 
+        return STATUS.SUCCESS
       } else {
         tokenStorage.removeToken()
         setLoginStatus(STATUS.ERROR)
-        setUserStatus(AUTH_STATUS.UNAUTH);
+        setUserStatus(AUTH_STATUS.UNAUTH)
 
-        return STATUS.ERROR;
+        return STATUS.ERROR
       }
     },
-    [setUserStatus]
+    [setUserStatus, getProfile]
   )
 
   const logout = useCallback(() => {
@@ -74,11 +73,9 @@ const useAuth = () => {
 
       return STATUS.SUCCESS
     } else {
-
       return STATUS.ERROR
     }
-  }, [setUserStatus])
-
+  }, [setUserStatus, getProfile])
 
   useEffect(() => {
     if (user.status === AUTH_STATUS.UNAUTH) {

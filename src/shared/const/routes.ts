@@ -29,7 +29,7 @@ export const ROUTES = {
 export const ROUTE_ACCESS = {
   ANY: 'any',
   AUTH: 'auth',
-  NO_AUTH: 'noAuth'
-} as const;
+  NO_AUTH: 'noAuth',
+} as const
 
-export type ROUTE_ACCESS_TYPE = typeof ROUTE_ACCESS[keyof typeof ROUTE_ACCESS];
+export type ROUTE_ACCESS_TYPE = (typeof ROUTE_ACCESS)[keyof typeof ROUTE_ACCESS]

@@ -8,7 +8,6 @@ const SecondButton = ({
   size = 'normal',
   disabled = false,
 }: ButtonProps) => {
-  
   let classes = `bg-white text-blue-800 border border-blue px-4 py-1 rounded cursor-pointer uppercase font-semibold hover:bg-gray-100`
 
   switch (size) {

@@ -42,7 +42,7 @@ const useUserDispatch = () => {
 
 const useUser = () => ({
   state: useUserState(),
-  ...useUserDispatch()
+  ...useUserDispatch(),
 })
 
-export default useUser;
+export default useUser

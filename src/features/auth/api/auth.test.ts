@@ -3,7 +3,7 @@ import { API_ROUTES } from '@/shared/const/api-routes'
 import { vi } from 'vitest'
 
 const mockFetchRequest = vi.fn()
-vi.mock('./fetchRequest', () => ({
+vi.mock('@/shared/api/fetch-request/fetch-request', () => ({
   default: mockFetchRequest,
 }))
 

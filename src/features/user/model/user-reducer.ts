@@ -17,11 +17,11 @@ export const userReducer = (
 
     case USER_CONTEXT_ACTIONS.REMOVE_USER:
       return { ...state, profile: null }
-    
-      case USER_CONTEXT_ACTIONS.SET_STATUS:
+
+    case USER_CONTEXT_ACTIONS.SET_STATUS:
       return { ...state, status: action.payload }
-    
-      default:
+
+    default:
       return state
   }
 }

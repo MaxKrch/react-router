@@ -10,7 +10,7 @@ type NewsItemProps = {
 
 const NewsItem = ({ news }: NewsItemProps) => {
   const link = useMemo(
-    () => generatePathWithId(ROUTES.NEWS_MAGAZINE.NEWS_DEATILS, news.id), 
+    () => generatePathWithId(ROUTES.NEWS_MAGAZINE.NEWS_DEATILS, news.id),
     [news.id]
   )
 
@@ -30,9 +30,7 @@ const NewsItem = ({ news }: NewsItemProps) => {
           <h2 className="text-lg font-semibold">
             {`${news.title[0].toUpperCase()}${news.title.slice(1)}`}
           </h2>
-          <div>
-            {news.content}
-            </div>
+          <div>{news.content}</div>
         </Link>
       </div>
     </article>

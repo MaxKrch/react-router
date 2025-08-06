@@ -2,7 +2,7 @@ import { renderHook, act } from '@testing-library/react'
 import UserProvider from './user-context'
 import useUser from './use-user-context'
 import type { PropsWithChildren } from 'react'
-import type { UserProfile } from '@/shared/types' 
+import type { UserProfile } from '@/shared/types'
 
 describe('User context integration', () => {
   const mockUser: UserProfile = {
@@ -17,10 +17,7 @@ describe('User context integration', () => {
       <UserProvider>{children}</UserProvider>
     )
 
-    const { result } = renderHook(
-      () => useUser(),
-      { wrapper }
-    )
+    const { result } = renderHook(() => useUser(), { wrapper })
 
     await act(() => {
       result.current.setUserData(mockUser)

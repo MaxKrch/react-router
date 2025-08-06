@@ -1,14 +1,15 @@
-import useAuth from "@/features/auth/model/use-auth";
-import { ROUTES } from "@/shared/const/routes";
-import { STATUS } from "@/shared/const/status";
+import useAuth from '@/features/auth/model/use-auth'
+import { ROUTES } from '@/shared/const/routes'
+import { STATUS } from '@/shared/const/status'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 const LoginForm = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
+  const location = useLocation()
   const shema = z.object({
     login: z
       .string()
@@ -35,12 +36,12 @@ const LoginForm = () => {
       password: getValues(`password`),
     })
 
-    if(result === STATUS.SUCCESS) {
-        reset({
-            login: '',
-            password: '',
-        }) 
-        navigate(ROUTES.NEWS_MAGAZINE.NEWS_FEED)
+    if (result === STATUS.SUCCESS) {
+      reset({
+        login: '',
+        password: '',
+      })
+      navigate(location.state?.from.pathname ?? ROUTES.NEWS_MAGAZINE.NEWS_FEED)
     }
   }
 

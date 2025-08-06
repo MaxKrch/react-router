@@ -1,18 +1,18 @@
 import React, { type PropsWithChildren } from 'react'
 import { vi } from 'vitest'
 import useUser from './use-user-context'
-import { AUTH_STATUS } from '@/shared/const/status' 
+import { AUTH_STATUS } from '@/shared/const/status'
 import { USER_CONTEXT_ACTIONS } from './user-consts'
 import type { UserAction } from './user-types'
 import { renderHook } from '@testing-library/react'
 import { UserDispatchContext, UserStateContext } from './user-context'
 
-describe('Hook: useUserContext', () => {      
+describe('Hook: useUserContext', () => {
   const mockUserStateContext = {
     profile: null,
     status: AUTH_STATUS.IDLE,
   }
-  
+
   describe('useUserState', () => {
     it('throws if no context', () => {
       expect(() => {
@@ -21,8 +21,6 @@ describe('Hook: useUserContext', () => {
     })
 
     it('returns context if present', () => {
-
-
       const wrapper = ({ children }: { children: React.ReactNode }) => (
         <UserStateContext.Provider value={mockUserStateContext}>
           <UserDispatchContext.Provider value={null}>

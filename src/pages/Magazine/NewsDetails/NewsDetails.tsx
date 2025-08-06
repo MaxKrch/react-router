@@ -1,15 +1,15 @@
-import useNewsDetails from "@/entities/NewsDetails/model/useNewsDetails"
-import News from "@/entities/NewsDetails/ui/News"
-import useLoadNews from "@/entities/NewsFeed/model/use-load.news"
-import useNewsFeed from "@/entities/NewsFeed/model/use-news-feed"
-import { ROUTES } from "@/shared/const/routes"
-import { STATUS, type STATUS_TYPE } from "@/shared/const/status"
-import type { NewsType } from "@/shared/types/news"
-import ErrorMessage from "@/shared/ui/ErrorMessage"
-import PageErrorMessage from "@/shared/ui/PageErrorMessage"
-import Spinner from "@/shared/ui/Spinner"
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import useNewsDetails from '@/entities/NewsDetails/model/useNewsDetails'
+import News from '@/entities/NewsDetails/ui/News'
+import useLoadNews from '@/entities/NewsFeed/model/use-load-news'
+import useNewsFeed from '@/entities/NewsFeed/model/use-news-feed'
+import { ROUTES } from '@/shared/const/routes'
+import { STATUS, type STATUS_TYPE } from '@/shared/const/status'
+import type { NewsType } from '@/shared/types/news'
+import ErrorMessage from '@/shared/ui/ErrorMessage'
+import PageErrorMessage from '@/shared/ui/PageErrorMessage'
+import Spinner from '@/shared/ui/Spinner'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type NewsState =
   | 'LOADING'
@@ -23,7 +23,8 @@ const getNewsPageState = (
   news: NewsType[] | null,
   newsDetails: NewsType | null | undefined
 ): NewsState => {
-  if (!news && (status === STATUS.PENDING || status === STATUS.IDLE)) return 'LOADING'
+  if (!news && (status === STATUS.PENDING || status === STATUS.IDLE))
+    return 'LOADING'
   if (!news && status === STATUS.ERROR) return 'NEWS_ERROR'
   if (news && !newsDetails) return 'DETAILS_ERROR'
   if (!news && status === STATUS.SUCCESS) return 'UNKNOWN_ERROR'
@@ -37,11 +38,10 @@ const NewsDetails = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!news) loadNews()
+    if (!news) loadNews()
   }, [news, loadNews])
 
-
-const state = getNewsPageState(status, news, newsDetails)
+  const state = getNewsPageState(status, news, newsDetails)
 
   switch (state) {
     case 'LOADING':
@@ -49,7 +49,7 @@ const state = getNewsPageState(status, news, newsDetails)
 
     case 'NEWS_ERROR':
       return <ErrorMessage onClick={loadNews} />
-    
+
     case 'DETAILS_ERROR':
       return (
         <ErrorMessage
@@ -61,7 +61,7 @@ const state = getNewsPageState(status, news, newsDetails)
 
     case 'UNKNOWN_ERROR':
       return <PageErrorMessage />
-    
+
     case 'SUCCESS':
     default:
       return <News news={newsDetails!} />

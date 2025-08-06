@@ -17,4 +17,4 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   )
 }
 
-export default UserProvider 
+export default UserProvider

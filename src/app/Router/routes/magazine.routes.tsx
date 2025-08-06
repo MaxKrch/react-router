@@ -11,21 +11,21 @@ const magazineRoutes = {
       ...lazyRouter(
         () => import('@/pages/Magazine/GuestPage'),
         ROUTE_ACCESS.NO_AUTH
-      )
+      ),
     },
     {
       path: ROUTES.NEWS_MAGAZINE.NEWS_FEED,
       ...lazyRouter(
-        () => import('@/pages/Magazine/NewsFeed'), 
+        () => import('@/pages/Magazine/NewsFeed'),
         ROUTE_ACCESS.AUTH
-      )
+      ),
     },
     {
       path: ROUTES.NEWS_MAGAZINE.NEWS_DEATILS,
       ...lazyRouter(
-        () => import('@/pages/Magazine/NewsDetails'), 
-        ROUTE_ACCESS.AUTH,
-      )
+        () => import('@/pages/Magazine/NewsDetails'),
+        ROUTE_ACCESS.AUTH
+      ),
     },
   ],
 }

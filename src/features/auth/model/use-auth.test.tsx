@@ -1,7 +1,12 @@
-import { AUTH_STATUS, STATUS, type AUTH_STATUS_TYPE } from '@/consts'
-import type { UserProfile } from '@/types'
+import UserProvider from '@/features/user/model/user-context'
+import {
+  AUTH_STATUS,
+  STATUS,
+  type AUTH_STATUS_TYPE,
+} from '@/shared/const/status'
+import type { UserProfile } from '@/shared/types'
 import { renderHook } from '@testing-library/react'
-import { act } from 'react'
+import { act, type PropsWithChildren } from 'react'
 import { vi } from 'vitest'
 
 const mockAuthApi = {
@@ -9,7 +14,7 @@ const mockAuthApi = {
   requestProfile: vi.fn(),
 }
 
-vi.mock('@/api/auth', () => mockAuthApi)
+vi.mock('@/features/auth/api/auth', () => mockAuthApi)
 
 const mockUserContext = {
   setUserData: vi.fn(),
@@ -17,24 +22,30 @@ const mockUserContext = {
   removeUserData: vi.fn(),
 }
 let mockAuthStatus: AUTH_STATUS_TYPE = AUTH_STATUS.IDLE
-vi.mock('@/context', () => ({
-  useUserDispatch: () => mockUserContext,
-  useUserState: () => ({
-    status: mockAuthStatus,
+vi.mock('@/features/user/model/use-user-context', () => ({
+  default: () => ({
+    ...mockUserContext,
+    state: {
+      status: mockAuthStatus,
+    },
   }),
 }))
 
-const mockStorage = {
+const mockTokenStorage = {
   getToken: vi.fn(),
   setToket: vi.fn(),
   removeToken: vi.fn(),
+}
+
+const mockUserStorage = {
   getProfile: vi.fn(),
   setProfile: vi.fn(),
   removeProfile: vi.fn(),
 }
 
-vi.mock('@/helpers/storage', () => ({
-  storage: mockStorage,
+vi.mock('@/shared/lib/storage/', () => ({
+  tokenStorage: mockTokenStorage,
+  userStorage: mockUserStorage,
 }))
 
 describe('Hook: useAuth', () => {
@@ -52,6 +63,10 @@ describe('Hook: useAuth', () => {
   }
   const mockToken = 'token-string'
 
+  const Wrapper = ({ children }: PropsWithChildren) => (
+    <UserProvider>{children}</UserProvider>
+  )
+
   beforeEach(async () => {
     useAuth = (await import('./use-auth')).default
     vi.clearAllMocks()
@@ -63,7 +78,7 @@ describe('Hook: useAuth', () => {
 
   describe('general', () => {
     it('set status IDLE on loginStatus and getProfeileStatus', () => {
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       expect(result.current.loginStatus).toBe(STATUS.IDLE)
       expect(result.current.getProfileStatus).toBe(STATUS.IDLE)
@@ -72,7 +87,9 @@ describe('Hook: useAuth', () => {
     it('should set getProfileStatus to IDLE when authStatus changes to UNAUTH', async () => {
       mockAuthStatus = AUTH_STATUS.AUTH
 
-      const { result, rerender } = renderHook(() => useAuth())
+      const { result, rerender } = renderHook(() => useAuth(), {
+        wrapper: Wrapper,
+      })
 
       await act(() => {
         result.current.getProfileStatus = STATUS.SUCCESS
@@ -90,7 +107,7 @@ describe('Hook: useAuth', () => {
     it('sets loginStatus to PENDING and userStatus to PENDING when login starts', async () => {
       mockAuthApi.requestLogin.mockImplementationOnce(() => pendingPromise)
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(() => {
         result.current.login(mockUserData)
@@ -104,14 +121,18 @@ describe('Hook: useAuth', () => {
         status: STATUS.SUCCESS,
         data: { token: mockToken },
       })
+      mockAuthApi.requestProfile.mockResolvedValue({
+        status: STATUS.SUCCESS,
+        data: mockUser,
+      })
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(async () => {
         await result.current.login(mockUserData)
       })
 
-      expect(mockStorage.setToket).toHaveBeenCalledWith(mockToken)
+      expect(mockTokenStorage.setToket).toHaveBeenCalledWith(mockToken)
       expect(result.current.loginStatus).toBe(STATUS.SUCCESS)
       expect(mockUserContext.setUserStatus).toHaveBeenCalledWith(
         AUTH_STATUS.AUTH
@@ -123,13 +144,13 @@ describe('Hook: useAuth', () => {
         status: STATUS.ERROR,
       })
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(async () => {
         await result.current.login(mockUserData)
       })
 
-      expect(mockStorage.removeToken).toHaveBeenCalled()
+      expect(mockTokenStorage.removeToken).toHaveBeenCalled()
       expect(result.current.loginStatus).toBe(STATUS.ERROR)
       expect(mockUserContext.setUserStatus).toHaveBeenCalledWith(
         AUTH_STATUS.UNAUTH
@@ -139,14 +160,14 @@ describe('Hook: useAuth', () => {
 
   describe('logout function', () => {
     it('removes token and profile from storage and sets userStatus to UNAUTH and removes user data', () => {
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       act(() => {
         result.current.logout()
       })
 
-      expect(mockStorage.removeToken).toHaveBeenCalled()
-      expect(mockStorage.removeProfile).toHaveBeenCalled()
+      expect(mockTokenStorage.removeToken).toHaveBeenCalled()
+      expect(mockUserStorage.removeProfile).toHaveBeenCalled()
       expect(mockUserContext.setUserStatus).toHaveBeenCalledWith(
         AUTH_STATUS.UNAUTH
       )
@@ -156,9 +177,13 @@ describe('Hook: useAuth', () => {
 
   describe('autoLogin function', () => {
     it('if token exists in storage, sets userStatus to AUTH', async () => {
-      mockStorage.getToken.mockReturnValue(mockToken)
+      mockAuthApi.requestProfile.mockResolvedValue({
+        status: STATUS.SUCCESS,
+        data: mockUser,
+      })
+      mockTokenStorage.getToken.mockReturnValue(mockToken)
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(() => {
         result.current.autoLogin()
@@ -170,9 +195,9 @@ describe('Hook: useAuth', () => {
     })
 
     it('if no token, does nothing or leaves userStatus unchanged', async () => {
-      mockStorage.getToken.mockReturnValue(null)
+      mockTokenStorage.getToken.mockReturnValue(null)
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(() => {
         result.current.autoLogin()
@@ -186,7 +211,7 @@ describe('Hook: useAuth', () => {
     it('sets getProfileStatus to PENDING when fetching profile', async () => {
       mockAuthApi.requestProfile.mockImplementationOnce(() => pendingPromise)
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(() => {
         result.current.getProfile()
@@ -194,34 +219,36 @@ describe('Hook: useAuth', () => {
 
       expect(result.current.getProfileStatus).toBe(STATUS.PENDING)
     })
+
     it('on successful fetch sets profile in storage, userData and getProfileStatus to SUCCESS', async () => {
       mockAuthApi.requestProfile.mockResolvedValue({
         status: STATUS.SUCCESS,
         data: mockUser,
       })
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(() => {
         result.current.getProfile()
       })
 
       expect(result.current.getProfileStatus).toBe(STATUS.SUCCESS)
-      expect(mockStorage.setProfile).toHaveBeenCalledWith(mockUser)
+      expect(mockUserStorage.setProfile).toHaveBeenCalledWith(mockUser)
       expect(mockUserContext.setUserData).toHaveBeenCalledWith(mockUser)
     })
+
     it('on failed fetch removes token, sets userStatus to UNAUTH and getProfileStatus to ERROR', async () => {
       mockAuthApi.requestProfile.mockResolvedValueOnce({
         status: STATUS.ERROR,
       })
 
-      const { result } = renderHook(() => useAuth())
+      const { result } = renderHook(() => useAuth(), { wrapper: Wrapper })
 
       await act(async () => {
         await result.current.getProfile()
       })
 
-      expect(mockStorage.removeToken).toHaveBeenCalled()
+      expect(mockTokenStorage.removeToken).toHaveBeenCalled()
       expect(result.current.getProfileStatus).toBe(STATUS.ERROR)
       expect(mockUserContext.setUserStatus).toHaveBeenCalledWith(
         AUTH_STATUS.UNAUTH

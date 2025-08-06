@@ -1,7 +1,7 @@
 import type { NewsType } from '@/shared/types/news'
 import { render, screen } from '@testing-library/react'
 import NewsItem from './NewsItem'
-
+import { MemoryRouter } from 'react-router-dom'
 
 describe('NewsItem', () => {
   it('renders image, title and content correctly', () => {
@@ -12,7 +12,11 @@ describe('NewsItem', () => {
       content: 'Content',
     }
 
-    render(<NewsItem news={mockNews} />)
+    render(
+      <MemoryRouter>
+        <NewsItem news={mockNews} />
+      </MemoryRouter>
+    )
 
     expect(screen.getByRole('img')).toHaveAttribute('src', mockNews.image)
     expect(screen.getByText(mockNews.title)).toBeInTheDocument()

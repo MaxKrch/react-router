@@ -1,7 +1,7 @@
 import { userReducer, initialUserState } from './user-reducer'
 import { USER_CONTEXT_ACTIONS } from './user-consts'
 import type { UserProfile } from '@/shared/types'
-import { AUTH_STATUS } from '@/shared/const/status' 
+import { AUTH_STATUS } from '@/shared/const/status'
 import type { UserAction } from './user-types'
 
 describe('userReducer', () => {

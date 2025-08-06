@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import GuestPage from './GuestPage'
 
-
 describe('GuestPage', () => {
   it('renders heading and subtitle', () => {
     const firstExpected = /Neto Social/i
